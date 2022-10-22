@@ -1,1 +1,2 @@
-# reacjts-projeto01
+# Curso Rocketseat - Projeto1 com Reactjs
+
