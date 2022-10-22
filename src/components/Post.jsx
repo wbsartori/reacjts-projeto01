@@ -10,7 +10,7 @@ import {Avatar} from "./Avatar";
 
 export function Post({author, publishedAt, content}) {
     const [comments, setComments] = useState([]);
-    const[newCommentText, setNewCommentText] = useState('');
+    const [newCommentText, setNewCommentText] = useState('');
 
     const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR
@@ -21,14 +21,22 @@ export function Post({author, publishedAt, content}) {
         addSuffix: true
     });
 
-    function handleCreateNewComment(){
+    function handleCreateNewComment() {
         event.preventDefault();
         setComments([...comments, newCommentText]);
         setNewCommentText('');
     }
 
-    function handleNewCommentChange(){
+    function handleNewCommentChange() {
         setNewCommentText(event.target.value);
+    }
+
+    function deleteComment(commentToDelete) {
+        const commentsWithoutDeleteOne = comments.filter(
+            comment => {
+                return comment !== commentToDelete;
+        });
+        setComments(commentsWithoutDeleteOne);
     }
 
     return (
@@ -49,9 +57,9 @@ export function Post({author, publishedAt, content}) {
 
             <div className={styles.content}>
                 {content.map(line => {
-                    if(line.type === 'paragraph') {
+                    if (line.type === 'paragraph') {
                         return <p key={line.content}>{line.content}</p>
-                    } else if(line.type === 'link'){
+                    } else if (line.type === 'link') {
                         return <p key={line.content}><a href="#">{line.content}</a></p>
                     }
                 })}
@@ -74,7 +82,13 @@ export function Post({author, publishedAt, content}) {
 
             <div className={styles.commentList}>
                 {comments.map(comment => {
-                    return <Comment key={comment} content={comment}/>
+                    return (
+                        <Comment
+                            key={comment}
+                            content={comment}
+                            onDeleteComment={deleteComment}
+                        />
+                    )
                 })}
             </div>
         </article>
