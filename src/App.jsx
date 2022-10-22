@@ -31,8 +31,8 @@ const posts = [
             role: "UX/UI Design"
         },
         content: [
-            {type : 'paragraph', content: "Fala galeraa 👋", },
-            {type : 'paragraph', content: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀", },
+            {type : 'paragraph', content: "Fala galerinhaaaa 👋", },
+            {type : 'paragraph', content: "Tenho ótimos conteúdos para a próxima talk, venham conferir espero vocês !!! 🚀", },
             {type : 'link', content: "jane.design/doctorcare" ,},
         ],
         publishedAt: new Date('2022-10-22 20:00:00')
