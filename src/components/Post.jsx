@@ -12,14 +12,22 @@ export function Post({author, publishedAt, content}) {
     const [comments, setComments] = useState([]);
     const [newCommentText, setNewCommentText] = useState('');
 
-    const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    const publishedDateFormatted = format(
+        publishedAt,
+        "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR
-    });
+    }
+    );
 
-    const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    const publishedDateRelativeToNow = formatDistanceToNow(
+        publishedAt,
+        {
         locale: ptBR,
         addSuffix: true
-    });
+    }
+    );
+
+    const isNewCommentEmpty = newCommentText.length === 0;
 
     function handleCreateNewComment() {
         event.preventDefault();
@@ -28,6 +36,7 @@ export function Post({author, publishedAt, content}) {
     }
 
     function handleNewCommentChange() {
+        event.target.setCustomValidity('');
         setNewCommentText(event.target.value);
     }
 
@@ -37,6 +46,10 @@ export function Post({author, publishedAt, content}) {
                 return comment !== commentToDelete;
         });
         setComments(commentsWithoutDeleteOne);
+    }
+
+    function handleNewCommentInvalid(){
+        event.target.setCustomValidity('O campo de comentário não pode estar vazio!')
     }
 
     return (
@@ -73,10 +86,15 @@ export function Post({author, publishedAt, content}) {
                     placeholder="Deixe seu comentário"
                     value={newCommentText}
                     onChange={handleNewCommentChange}
+                    onInvalid={handleNewCommentInvalid}
+                    required
                 />
 
                 <footer>
-                    <button type="submit">Publicar</button>
+                    <button
+                        type="submit"
+                        disabled={isNewCommentEmpty}
+                    >Publicar</button>
                 </footer>
             </form>
 
