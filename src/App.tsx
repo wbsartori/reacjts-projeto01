@@ -4,10 +4,6 @@ import styles from './App.module.css';
 import {Sidebar} from "./components/Sidebar";
 import {Post} from "./components/Post";
 
-// author : { avatar_url: "", name: "", role: "" }
-//publisheAd : Date
-//comment: String
-
 const posts = [
     {
         id: 1,
