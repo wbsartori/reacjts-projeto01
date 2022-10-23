@@ -26,7 +26,7 @@ interface PostProps {
 }
 
 export function Post({author, publishedAt, content}: PostProps) {
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState(['']);
 
     const [newCommentText, setNewCommentText] = useState('');
 
@@ -44,7 +44,6 @@ export function Post({author, publishedAt, content}: PostProps) {
     function handleCreateNewComment(event: FormEvent) {
         event.preventDefault()
 
-        // @ts-ignore
         setComments([...comments, newCommentText]);
         setNewCommentText('');
     }
