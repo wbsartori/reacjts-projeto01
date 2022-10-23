@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://wbsartori.github.io/reacjts-projeto01",
+  "homepage": "reacjts-projeto01/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
